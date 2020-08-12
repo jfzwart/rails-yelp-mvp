@@ -5,9 +5,19 @@
 <p><%= @restaurant.category %></p>
 <%= link_to 'Back to all', restaurants_path %>
 <%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %>
+<%= link_to 'Delete Restaurant',
+               restaurant_path,
+               method: :delete,
+               data: { confirm: "Are you sure?" } %>
 
 <ul class="list-group">
   <% @restaurant.reviews.each do |review| %>
     <li class="list-group-item"><%= review.content %></li>
+      <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </li>
   <% end %>
 </ul>
+
